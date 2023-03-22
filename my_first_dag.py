@@ -6,7 +6,7 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 
 import pandas
-import toolz
+# import toolz
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ def task_1(**kwargs):
     output = {'output': 'hello world 1', 'execution_time': str(datetime.now())}
     logger.info(output)
     logger.info(f'Pandas version: {pandas.__version__}')
-    logger.info(f'Toolz version: {toolz.__version__}')
+#     logger.info(f'Toolz version: {toolz.__version__}')
     return output
 
 
