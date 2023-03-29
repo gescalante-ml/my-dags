@@ -1,4 +1,3 @@
-print('i remember u was conflicted')
 from datetime import datetime
 import logging
 
@@ -6,12 +5,11 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 
 import pandas
-# import toolz
 
 logger = logging.getLogger(__name__)
 
 default_args = {
-    'owner': 'andresionek91',
+    'owner': 'gescalante',
     'start_date': datetime(2020, 5, 20),
     'depends_on_past': False,
     'provide_context': True
@@ -28,7 +26,6 @@ def task_1(**kwargs):
     output = {'output': 'hello world 1', 'execution_time': str(datetime.now())}
     logger.info(output)
     logger.info(f'Pandas version: {pandas.__version__}')
-#     logger.info(f'Toolz version: {toolz.__version__}')
     return output
 
 
@@ -41,7 +38,10 @@ def task_2(**kwargs):
 
 def task_3(**kwargs):
     logger.info('Log from task 3')
-    return {'output': 'hello world 3', 'execution_time': str(datetime.now())}
+    import os
+    a = os.listdir('/usr/local/airflow/dags')
+    logger.info(f'hello world 3, files: {str(a)}')
+    return {'output': f'hello world 3, files: {str(a)}', 'execution_time': str(datetime.now())}
 
 
 t1 = PythonOperator(
