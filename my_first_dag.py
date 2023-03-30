@@ -1,3 +1,4 @@
+print("The Airflow system works.")
 from datetime import datetime
 import logging
 
