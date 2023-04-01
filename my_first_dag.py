@@ -5,6 +5,18 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 
 import pandas
+import boto3
+
+# Create an S3 client
+s3 = boto3.client('s3')
+
+# List all buckets
+response = s3.list_buckets()
+print(response, 'aaaa')
+
+# Print the bucket names
+for bucket in response['Buckets']:
+    print(bucket['Name'])
 
 logger = logging.getLogger(__name__)
 
