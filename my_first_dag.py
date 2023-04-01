@@ -6,6 +6,7 @@ from airflow.operators.python_operator import PythonOperator
 
 import pandas
 import boto3
+from pymongo import MongoClient
 
 # Create an S3 client
 s3 = boto3.client('s3')
