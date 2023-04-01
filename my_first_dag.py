@@ -10,9 +10,6 @@ import boto3
 # Create an S3 client
 s3 = boto3.client('s3')
 
-# List all buckets
-response = s3.list_buckets()
-print(response, 'aaaa')
 
 # Print the bucket names
 for bucket in response['Buckets']:
@@ -35,6 +32,10 @@ dag = DAG('my_first_dag',
 
 
 def task_1(**kwargs):
+    # List all buckets
+    response = s3.list_buckets()
+    print(response, 'aaaa')
+
     output = {'output': 'hello world 1', 'execution_time': str(datetime.now())}
     logger.info(output)
     logger.info(f'Pandas version: {pandas.__version__}')
