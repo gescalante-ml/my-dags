@@ -11,10 +11,7 @@ import boto3
 s3 = boto3.client('s3')
 
 
-# Print the bucket names
-for bucket in response['Buckets']:
-    print(bucket['Name'])
-
+#
 logger = logging.getLogger(__name__)
 
 default_args = {
@@ -34,7 +31,9 @@ dag = DAG('my_first_dag',
 def task_1(**kwargs):
     # List all buckets
     response = s3.list_buckets()
-    print(response, 'aaaa')
+    # Print the bucket names
+    for bucket in response['Buckets']:
+        print(bucket['Name'], 'abc')
 
     output = {'output': 'hello world 1', 'execution_time': str(datetime.now())}
     logger.info(output)
